@@ -9,7 +9,7 @@
     "prebuild:frontend": "cd frontend && npm install",
     "prebuild": "npm run prebuild:backend && npm run prebuild:frontend",
     "build": "cd frontend && npm run build",
-    "postbuild": "move frontend/build backend/src/public"
+    "postbuild": "move -f frontend/build backend/src/public"
   },
   "keywords": [],
   "author": "",
