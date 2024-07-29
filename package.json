@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "cd backend && npm start",
-    "prebuild": "cd frontend && npm install & cd backend && npm install",
+    "prebuild:backend": "cd backend && npm install",
+    "prebuild:frontend": "cd frontend && npm install",
+    "prebuild": "npm run prebuild:backend && npm run prebuild:frontend",
     "build": "cd frontend && npm run build",
-    "postbuild": "move -f frontend/build backend/src/public"
+    "postbuild": "move frontend/build backend/src/public"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=18 <19"
+    "node": ">=18 <21"
   }
 }

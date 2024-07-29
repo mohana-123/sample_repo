@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import classes from './button.module.css';
 
 export default function Button({
