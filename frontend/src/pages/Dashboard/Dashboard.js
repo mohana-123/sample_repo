@@ -10,9 +10,10 @@ export default function Dashboard() {
         <div className={classes.container}>
             <div className={classes.menu}>
                 {
-                    allItems.filter(items => user.isAdmin || !items.forAdmin)
+                    allItems.filter(item => user.isAdmin || !item.forAdmin)
                         .map(item => (
                             <Link
+                                key={item.id}
                                 to={item.url}
                                 style={{
                                     backgroundColor: item.bgColor,
