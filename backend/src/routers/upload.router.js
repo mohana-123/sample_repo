@@ -8,16 +8,19 @@ import { configCloudinary } from "../config/cloudinary.config.js";
 const router = Router();
 const upload = multer();
 
-router.post('/', admin, upload.single('image'), handler(async (req, res) => {
-    const file = req.file;
-    if (!file) {
-        res.status(BAD_REQUEST).send();
-        return;
-    }
+router.post('/',
+    admin,
+    upload.single('image'),
+    handler(async (req, res) => {
+        const file = req.file;
+        if (!file) {
+            res.status(BAD_REQUEST).send();
+            return;
+        }
 
-    const imageUrl = await uploadImageToCloudinary(req.file?.buffer);
-    res.send({ imageUrl });
-})
+        const imageUrl = await uploadImageToCloudinary(req.file?.buffer);
+        res.send({ imageUrl });
+    })
 );
 
 const uploadImageToCloudinary = imageBuffer => {
