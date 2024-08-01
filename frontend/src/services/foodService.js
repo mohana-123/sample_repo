@@ -29,3 +29,7 @@ export const getById = async foodId => {
 export async function deleteById(foodId) {
     await axios.delete('/api/foods/' + foodId);
 }
+
+export async function update(food) {
+    await axios.put('/api/foods', food);
+}

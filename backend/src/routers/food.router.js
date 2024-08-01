@@ -13,6 +13,30 @@ router.get(
     })
 );
 
+router.put(
+    '/',
+    admin,
+    handler(async (req, res) => {
+        const { id, name, price, tags, favorite, imageUrl, origins, cookTime } =
+            req.body;
+
+        await FoodModel.updateOne(
+            { _id: id },
+            {
+                name,
+                price,
+                tags,
+                favorite,
+                imageUrl,
+                origins,
+                cookTime,
+            }
+        );
+
+        res.send();
+    })
+)
+
 router.delete('/:foodId', admin, handler(async (req, res) => {
     const { foodId } = req.params;
     await FoodModel.deleteOne({ _id: foodId });
