@@ -2,13 +2,13 @@ import { useParams } from 'react-router-dom';
 import classes from './foodEdit.module.css';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { getById, update } from '../../services/foodService';
+import { getById } from '../../services/foodService';
 import Title from '../../components/Title/Title';
 import InputContainer from '../../components/InputContainer/InputContainer';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { uploadImage } from '../../services/uploadService';
-import { toast } from 'react-toastify';
+
 
 export default function FoodEditPage() {
     const { foodId } = useParams();
@@ -23,30 +23,23 @@ export default function FoodEditPage() {
     } = useForm();
 
     useEffect(() => {
-        if (!isEditMode) return;
+        if (isEditMode) return;
 
         getById(foodId).then(food => {
             if (!food) return;
             reset(food);
             setImageUrl(food.imageUrl);
-        });
+        })
     }, [foodId]);
 
-    const submit = async foodData => {
-        const food = { ...foodData, imageUrl };
-
-        if (isEditMode) {
-            await update(food);
-            toast.success(`Food "${food.name}" updated successfully!`);
-            return;
-        }
-    };
+    const submit = () => { };
 
     const upload = async event => {
         setImageUrl(null);
         const imageUrl = await uploadImage(event);
         setImageUrl(imageUrl);
     };
+
 
     return (
         <div className={classes.container}>
@@ -56,11 +49,13 @@ export default function FoodEditPage() {
                     <InputContainer label="Select Image">
                         <input type='file' onChange={upload} accept='image/jpeg' />
                     </InputContainer>
+
                     {imageUrl && (
                         <a href={imageUrl} className={classes.image_link} target='blank'>
-                            <img src={imageUrl} alt='uploaded' />
+                            <img src={imageUrl} alt='Uploaded' />
                         </a>
                     )}
+
                     <Input
                         type="text"
                         label="Name"
@@ -96,7 +91,7 @@ export default function FoodEditPage() {
                         error={errors.cookTime}
                     />
 
-                    <Button type="submit" text={isEditMode ? 'Update' : "Create"} />
+                    <Button type="submit" text={isEditMode ? 'Update' : 'Create'} />
                 </form>
             </div>
         </div>

@@ -9,7 +9,7 @@ export const uploadImage = async event => {
 
     const formData = new FormData();
     formData.append('image', image, image.name);
-    const response = await axios.post('api/upload', formData, formData, {
+    const response = await axios.post('api/upload', formData, {
         onUploadProgress: ({ progress }) => {
             if (toastId) toast.update(toastId, { progress });
             else toastId = toast.success('Uploading...', { progress });
@@ -23,16 +23,17 @@ const getImage = async event => {
     const files = event.target.files;
 
     if (!files || files.length <= 0) {
-        toast.warning('Upload file is not selected!', 'File Uploaded');
+        toast.warning('Upload file is not selected!', 'File Upload');
         return null;
     }
 
     const file = files[0];
 
     if (file.type !== 'image/jpeg') {
-        toast.error('Only JPG type is allowed', 'File Type Error');
+        toast.error('only JPG type is allowed', 'File type Error');
         return null;
     }
 
     return file;
+
 };

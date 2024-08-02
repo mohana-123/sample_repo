@@ -8,7 +8,8 @@ import { configCloudinary } from "../config/cloudinary.config.js";
 const router = Router();
 const upload = multer();
 
-router.post('/',
+router.post(
+    '/',
     admin,
     upload.single('image'),
     handler(async (req, res) => {
