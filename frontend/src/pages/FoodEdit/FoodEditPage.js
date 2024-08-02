@@ -37,7 +37,7 @@ export default function FoodEditPage() {
     const upload = async event => {
         setImageUrl(null);
         const imageUrl = await uploadImage(event);
-        setImageUrl(imageUrl);
+        setImageUrl({imageUrl});
     };
 
 
