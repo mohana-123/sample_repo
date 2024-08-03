@@ -2,12 +2,12 @@ import { useParams } from 'react-router-dom';
 import classes from './foodEdit.module.css';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { add, getById, update } from '../../services/foodService';
-import Title from '../../components/Title/Title';
-import InputContainer from '../../components/InputContainer/InputContainer';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import { uploadImage } from '../../services/uploadService';
+import { add, getById, update } from '../../services/foodService.js';
+import Title from '../../components/Title/Title.js';
+import InputContainer from '../../components/InputContainer/InputContainer.js';
+import Input from '../../components/Input/Input.js';
+import Button from '../../components/Button/Button.js';
+import { uploadImage } from '../../services/uploadService.js';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ export default function FoodEditPage() {
     const isEditMode = !!foodId;
 
     const navigate = useNavigate();
+
 
     const {
         handleSubmit,
