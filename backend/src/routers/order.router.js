@@ -100,6 +100,6 @@ router.get(
 );
 
 const getNewOrderForCurrentUser = async req =>
-    await OrderModel.findOne({ user: req.user.id, status: OrderStatus.NEW });
+    await OrderModel.findOne({ user: req.user.id, status: OrderStatus.NEW }).populate('user');
 
 export default router;
